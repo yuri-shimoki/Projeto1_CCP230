@@ -9,7 +9,7 @@ int main(void)
     char arquivo[] = "tarefas";
     int codigo, opcao;
 
-    codigo = carregarTarefas(lt, arquivo);
+    codigo = carregarTarefas(&lt, arquivo);
 
     if (codigo !=0)
     {
