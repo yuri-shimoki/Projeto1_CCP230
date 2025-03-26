@@ -1,6 +1,7 @@
-#include "projeto.h"
 #include "stdio.h"
 #include "string.h"
+
+#include "headers/Projeto.h"
 
 int criarTarefa(ListaDeTarefas* lt)
 {

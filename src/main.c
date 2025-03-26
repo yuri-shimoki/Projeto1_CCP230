@@ -1,5 +1,6 @@
 #include "stdio.h"
-#include "projeto.h"
+
+#include "headers/Projeto.h"
 
 int main(void)
 {
