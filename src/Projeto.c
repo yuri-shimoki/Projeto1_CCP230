@@ -33,7 +33,7 @@ int deletarTarefa(ListaDeTarefas* lt)
     printf("Entre com a posicao que deseja deletar: ");
     scanf("%d", &pos);
     
-    if (pos <0 || pos < lt->qtd - 1)
+    if (pos < 0 || pos < lt->qtd - 1)
         return 2;
     
     for (; pos < lt->qtd-1; pos++)
@@ -54,7 +54,7 @@ int listarTarefas(ListaDeTarefas* lt)
         
 
     int i;
-    for(i=0; i< lt->qtd; i++)
+    for(i = 0; i < lt->qtd; i++)
     {
         printf("Pos: %d \t Prioridade: %d \t Categoria: %s\n", i, 
             lt->tarefas[i].prioridade, lt->tarefas[i].categoria);
