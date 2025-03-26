@@ -13,7 +13,7 @@ typedef struct
 {
     Tarefa tarefas[100];
     int qtd;
-} ListaDeTarefa;
+} ListaDeTarefas;
 
 int criarTarefa(ListaDeTarefas* lt);
 int deletarTarefa(ListaDeTarefas* lt);
