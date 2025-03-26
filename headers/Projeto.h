@@ -1,3 +1,5 @@
+#pragma once
+
 #define TOTAL_TAREFAS 5
 
 typedef struct
