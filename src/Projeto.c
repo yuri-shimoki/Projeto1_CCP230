@@ -64,7 +64,7 @@ int listarTarefas(ListaDeTarefas* lt)
     return 0;
 }
 
-int carregarTarefas(ListaDeTarefas* lt, char nome)
+int carregarTarefas(ListaDeTarefas* lt, char* nome)
 {
     FILE* fp = fopen(nome, "rb");
     if (fp == NULL)
