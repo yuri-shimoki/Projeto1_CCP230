@@ -89,7 +89,7 @@ int salvarTarefas(ListaDeTarefas* lt, char* nome)
     return 0;
 }
 
-void exibeMenu()
+void exibeMenu(void)
 {
     printf("menu\n");
     printf("1. Criar tarefa\n");
