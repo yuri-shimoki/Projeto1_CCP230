@@ -7,7 +7,7 @@ int main(void)
 {
     ListaDeTarefas lt;
 
-    char arquivo[] = "tarefas";
+    char* arquivo = "tarefas";
     int codigo, opcao;
 
     codigo = carregarTarefas(&lt, arquivo);
