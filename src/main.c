@@ -19,7 +19,6 @@ int main(void)
     do
     {
         exibeMenu();
-        printf("Digite um numero (0-3): ");
         scanf("%d", &opcao);
 
         if (opcao == 0)
@@ -46,6 +45,16 @@ int main(void)
             codigo = listarTarefas(&lt);
             if (codigo == 1)
                 printf("A lista de tarefas esta vazia.\n\n");
+        }
+        else if (opcao == 4)
+        {
+            codigo = modificarTarefa(&lt);
+            if (codigo == 1)
+                printf("Nao ha tarefas para serem modificadas.\n\n");
+            else if (codigo == 2)
+                printf("A posicao digitada nao corresponde a uma tarefa existente.\n\n");
+            else if (codigo == 3)
+                printf("O numero de campo digitado nao e um numero de 0 a 2.\n\n");
         }
         else
             printf("Opcao invalida.\n\n");

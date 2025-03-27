@@ -5,7 +5,7 @@
 
 int criarTarefa(ListaDeTarefas* lt)
 {
-    if (lt->qtd >= TOTAL_TAREFAS)
+    if (lt->qtd >= MAXIMO_DE_TAREFAS)
         return 1;
     
 	Tarefa* t = &lt->tarefas[lt->qtd];
@@ -59,6 +59,44 @@ int listarTarefas(ListaDeTarefas* lt)
     return 0;
 }
 
+int modificarTarefa(ListaDeTarefas* lt)
+{
+    if (lt->qtd == 0)
+        return 1;
+
+    int pos;
+    printf("Digite a posicao da tarefa a ser modificada: ");
+    scanf("%d", &pos);
+
+    if (pos < 0 || pos >= lt->qtd)
+        return 2;
+
+    int campo;
+    printf("Digite qual campo da tarefa voce deseja modificar.\n0 - Prioridade\n1 - Descricao\n2 - Categoria\nDigite um numero de 0 a 2: ");
+    scanf("%d", &campo);
+
+    if (campo < 0 || campo >= 3)
+        return 3;
+
+    switch (campo)
+    {
+        case 0:
+            printf("Digite a nova prioridade da tarefa: ");
+            scanf("%d", &lt->tarefas[pos].prioridade);
+            break;
+        case 1:
+            printf("Digite a nova descricao da tarefa: ");
+            scanf(" %299[^\n]", &lt->tarefas[pos].descricao);
+            break;
+        case 2:
+            printf("Digite a nova categoria da tarefa: ");
+            scanf(" %99[^\n]", &lt->tarefas[pos].categoria);
+            break;
+    }
+
+    return 0;
+}
+
 int carregarTarefas(ListaDeTarefas* lt, char* nome)
 {
     FILE* fp = fopen(nome, "rb");
@@ -86,5 +124,5 @@ int salvarTarefas(ListaDeTarefas* lt, char* nome)
 
 void exibeMenu(void)
 {
-    printf("---=== Menu ===---\n1. Criar tarefa\n2. Deletar tarefa\n3. Listar tarefas\n0. Sair\n");
+    printf("---=== Menu ===---\n1. Criar tarefa\n2. Deletar tarefa\n3. Listar tarefas\n4. Modificar tarefa\n0. Sair\nDigite um numero (0-4): ");
 }
