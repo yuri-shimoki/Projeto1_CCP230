@@ -97,6 +97,23 @@ int modificarTarefa(ListaDeTarefas* lt)
     return 0;
 }
 
+int deletarTodasAsTarefas(ListaDeTarefas* lt)
+{
+    int resposta;
+    printf("Voce tem certeza que deseja deletar todas as tarefas? Este processo nao e reversivel e ira apagar todas as tarefas da lista.\n0 - Sim\n1 - Nao\nDigite um numero de 0 a 1: ");
+    scanf("%d", &resposta);
+
+    if (resposta < 0 || resposta >= 2)
+        return 1;
+
+    if (resposta == 0)
+        lt->qtd = 0;
+
+    return 0;
+}
+
+int 
+
 int carregarTarefas(ListaDeTarefas* lt, char* nome)
 {
     FILE* fp = fopen(nome, "rb");
@@ -124,5 +141,5 @@ int salvarTarefas(ListaDeTarefas* lt, char* nome)
 
 void exibeMenu(void)
 {
-    printf("---=== Menu ===---\n1. Criar tarefa\n2. Deletar tarefa\n3. Listar tarefas\n4. Modificar tarefa\n0. Sair\nDigite um numero (0-4): ");
+    printf("---=== Menu ===---\n1. Criar tarefa\n2. Deletar tarefa\n3. Listar tarefas\n4. Modificar tarefa\n5. Deletar todas as tarefas.\n0. Sair\nDigite um numero (0-5): ");
 }
