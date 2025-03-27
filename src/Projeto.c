@@ -10,14 +10,14 @@ int criarTarefa(ListaDeTarefas* lt)
     
 	Tarefa* t = &lt->tarefas[lt->qtd];
 
-    printf("Entre com a prioridade da tarefa: ");
+    printf("Digite a prioridade da tarefa: ");
     scanf("%d", &t->prioridade);
 
-    printf("Entre com a categoria da tarefa: ");
-    scanf("%s", t->categoria);
+    printf("Digite a categoria da tarefa: ");
+    scanf(" %99[^\n]", t->categoria);
 
-    printf("Entre com a descricao da tarefa: ");
-    scanf("%s", t->descricao);
+    printf("Digite a descricao da tarefa: ");
+    scanf(" %299[^\n]", t->descricao);
 
     lt->qtd++;
 
@@ -30,16 +30,16 @@ int deletarTarefa(ListaDeTarefas* lt)
         return 1;
    
     int pos;
-    printf("Entre com a posicao que deseja deletar: ");
+    printf("Digite a posicao da tarefa que deseja deletar: ");
     scanf("%d", &pos);
     
-    if (pos < 0 || pos < lt->qtd - 1)
+    if (pos < 0 || pos >= lt->qtd)
         return 2;
     
-    for (; pos < lt->qtd-1; pos++)
+    for (; pos < lt->qtd - 1; pos++)
     {
         lt->tarefas[pos].prioridade = lt->tarefas[pos+1].prioridade; 
-        strcpy(lt->tarefas[pos].descricao, lt->tarefas[pos+1].categoria); 
+        strcpy(lt->tarefas[pos].descricao, lt->tarefas[pos+1].descricao); 
         strcpy(lt->tarefas[pos].categoria, lt->tarefas[pos+1].categoria);
     }
     
@@ -49,17 +49,12 @@ int deletarTarefa(ListaDeTarefas* lt)
 
 int listarTarefas(ListaDeTarefas* lt)
 {
-    if(lt->qtd == 0)
+    if (lt->qtd == 0)
         return 1;
-        
 
-    int i;
-    for(i = 0; i < lt->qtd; i++)
-    {
-        printf("Pos: %d \t Prioridade: %d \t Categoria: %s\n", i, 
-            lt->tarefas[i].prioridade, lt->tarefas[i].categoria);
-        printf("Descricao: %s\n", lt->tarefas[i].descricao);
-    }
+    for(int i = 0; i < lt->qtd; i++)
+        printf("- Tarefa #%d -\nPrioridade: %d\nCategoria: %s\nDescricao: %s\n\n",
+            i, lt->tarefas[i].prioridade, lt->tarefas[i].categoria, lt->tarefas[i].descricao);
 
     return 0;
 }
@@ -83,7 +78,7 @@ int salvarTarefas(ListaDeTarefas* lt, char* nome)
     if (fp == NULL)
         return 1;
     
-    fwrite(lt, sizeof(ListaDeTarefas) , 1, fp);
+    fwrite(lt, sizeof(ListaDeTarefas), 1, fp);
     fclose(fp);
 
     return 0;
@@ -91,9 +86,5 @@ int salvarTarefas(ListaDeTarefas* lt, char* nome)
 
 void exibeMenu(void)
 {
-    printf("menu\n");
-    printf("1. Criar tarefa\n");
-    printf("2. Deletar tarefa\n");
-    printf("3. Listar tarefa\n");
-    printf("0. Sair\n");
+    printf("---=== Menu ===---\n1. Criar tarefa\n2. Deletar tarefa\n3. Listar tarefas\n0. Sair\n");
 }

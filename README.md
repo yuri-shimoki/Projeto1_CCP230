@@ -20,3 +20,4 @@
 
 ## Compilação e execução
 
+`gcc -I headers -Ofast src/*.c -o projeto`
