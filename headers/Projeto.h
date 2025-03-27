@@ -1,6 +1,6 @@
 #pragma once
 
-#define TOTAL_TAREFAS 5
+#define MAXIMO_DE_TAREFAS 100
 
 typedef struct
 {
@@ -18,7 +18,9 @@ typedef struct
 int criarTarefa(ListaDeTarefas* lt);
 int deletarTarefa(ListaDeTarefas* lt);
 int listarTarefas(ListaDeTarefas* lt);
+int modificarTarefa(ListaDeTarefas* lt);
 
 int carregarTarefas(ListaDeTarefas* lt, char* nomes);
 int salvarTarefas(ListaDeTarefas* lt, char* nome);
 void exibeMenu(void);
+
