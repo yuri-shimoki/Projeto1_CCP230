@@ -56,6 +56,12 @@ int main(void)
             else if (codigo == 3)
                 printf("O numero de campo digitado nao e um numero de 0 a 2.\n\n");
         }
+        else if (opcao == 5)
+        {
+            codigo = deletarTodasAsTarefas(&lt);
+            if (codigo == 1)
+                printf("O numero digitado nao e um numero de 0 a 1.\n\n");
+        }
         else
             printf("Opcao invalida.\n\n");
 
