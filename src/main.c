@@ -30,6 +30,8 @@ int main(void)
             codigo = criarTarefa(&lt);
             if (codigo == 1)
                 printf("Erro ao criar tarefa: Sem espaco disponivel. Delete uma tarefa para liberar espaco.\n\n");
+            else if (codigo == 2)
+                printf("O valor da prioridade nao pode ser um numero negativo.\n\n");
         }
         else if (opcao == 2)
         {
@@ -55,12 +57,20 @@ int main(void)
                 printf("A posicao digitada nao corresponde a uma tarefa existente.\n\n");
             else if (codigo == 3)
                 printf("O numero de campo digitado nao e um numero de 0 a 2.\n\n");
+            else if (codigo == 4)
+                printf("O valor da prioridade nao pode ser um numero negativo.\n\n");
         }
         else if (opcao == 5)
         {
             codigo = deletarTodasAsTarefas(&lt);
             if (codigo == 1)
                 printf("O numero digitado nao e um numero de 0 a 1.\n\n");
+        }
+        else if (opcao == 6)
+        {
+            codigo = ordenarTarefas(&lt);
+            if (codigo == 1)
+                printf("Nao ha tarefas o suficiente para serem ordenadas.\n\n");
         }
         else
             printf("Opcao invalida.\n\n");

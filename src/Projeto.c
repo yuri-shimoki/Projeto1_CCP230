@@ -10,8 +10,14 @@ int criarTarefa(ListaDeTarefas* lt)
     
 	Tarefa* t = &lt->tarefas[lt->qtd];
 
+    int prioridade;
     printf("Digite a prioridade da tarefa: ");
-    scanf("%d", &t->prioridade);
+    scanf("%d", &prioridade);
+
+    if (prioridade < 0)
+        return 2;
+
+    t->prioridade = prioridade;
 
     printf("Digite a categoria da tarefa: ");
     scanf(" %99[^\n]", t->categoria);
@@ -81,8 +87,15 @@ int modificarTarefa(ListaDeTarefas* lt)
     switch (campo)
     {
         case 0:
+            int prioridade;
             printf("Digite a nova prioridade da tarefa: ");
-            scanf("%d", &lt->tarefas[pos].prioridade);
+            scanf("%d", &prioridade);
+
+            if (prioridade < 0)
+                return 4;
+
+            lt->tarefas[pos].prioridade = prioridade;
+
             break;
         case 1:
             printf("Digite a nova descricao da tarefa: ");
@@ -109,10 +122,41 @@ int deletarTodasAsTarefas(ListaDeTarefas* lt)
     if (resposta == 0)
         lt->qtd = 0;
 
+    printf("As tarefas foram deletadas com sucesso.\n\n");
+
     return 0;
 }
 
-int 
+void trocarTarefas(Tarefa* t1, Tarefa* t2)
+{
+    Tarefa temporario;
+    temporario = *t1;
+    *t1 = *t2;
+    *t2 = temporario;
+}
+
+int ordenarTarefas(ListaDeTarefas* lt)
+{
+    if (lt->qtd <= 1)
+        return 1;
+
+    for (int i = 0; i < lt->qtd-1; ++i)
+    {   
+        Tarefa* ti = &lt->tarefas[i];
+
+        for (int j = i+1; j < lt->qtd; ++j)
+        {
+            Tarefa* tj = &lt->tarefas[j];
+
+            if (ti->prioridade < tj->prioridade)
+                trocarTarefas(ti, tj);
+        }
+    }
+
+    printf("As tarefas foram ordenadas com sucesso.\n\n");
+
+    return 0;
+}
 
 int carregarTarefas(ListaDeTarefas* lt, char* nome)
 {
@@ -141,5 +185,5 @@ int salvarTarefas(ListaDeTarefas* lt, char* nome)
 
 void exibeMenu(void)
 {
-    printf("---=== Menu ===---\n1. Criar tarefa\n2. Deletar tarefa\n3. Listar tarefas\n4. Modificar tarefa\n5. Deletar todas as tarefas.\n0. Sair\nDigite um numero (0-5): ");
+    printf("---=== Menu ===---\n1. Criar tarefa\n2. Deletar tarefa\n3. Listar tarefas\n4. Modificar tarefa\n5. Deletar todas as tarefas\n6. Ordenar tarefas\n0. Sair\nDigite um numero (0-6): ");
 }
